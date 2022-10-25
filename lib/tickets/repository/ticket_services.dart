@@ -43,17 +43,22 @@ class TicketServices{
           errorMessage: response.statusMessage,
         );
       }
-    } on DioError catch (e) {
+    }  on DioError catch (e) {
       if (e.isNoConnectionError) {
         /// Throws exception caused by internet connection problem
         throw const NoInternetConnectionException(noInternetConnectionMessage);
-      } else if (e.isTimeoutError) {
-        throw const TimeoutException(errorCode: timeOutStatusCode);
-      } else {
-        /// Throws Exception when something went wrong in the call
+      } else if (e.isTimeoutError || e.response!.statusCode! == 408) {
+        throw const TimeoutException(errorCode: timeOutStatusCode,errorMessage: messageTimeOut);
+      } else if (e.response!.statusCode! >= 500) {
         throw RestApiException(
           errorCode: e.response?.statusCode,
-          errorMessage: e.response?.statusMessage,
+          errorMessage: e.response?.data,
+        );
+      }else {
+        /// Throws Exception when something went wrong in the call
+        throw UnknowError(
+          errorCode: -1,
+          errorMessage: unknownErrorMessage,
         );
       }
     }
@@ -127,17 +132,22 @@ class TicketServices{
           errorMessage: response.statusMessage,
         );
       }
-    } on DioError catch (e) {
+    }  on DioError catch (e) {
       if (e.isNoConnectionError) {
         /// Throws exception caused by internet connection problem
         throw const NoInternetConnectionException(noInternetConnectionMessage);
-      } else if (e.isTimeoutError) {
-        throw const TimeoutException(errorCode: timeOutStatusCode);
-      } else {
-        /// Throws Exception when something went wrong in the call
+      } else if (e.isTimeoutError || e.response!.statusCode! == 408) {
+        throw const TimeoutException(errorCode: timeOutStatusCode,errorMessage: messageTimeOut);
+      } else if (e.response!.statusCode! >= 500) {
         throw RestApiException(
           errorCode: e.response?.statusCode,
-          errorMessage: e.response?.statusMessage,
+          errorMessage: e.response?.data,
+        );
+      }else {
+        /// Throws Exception when something went wrong in the call
+        throw UnknowError(
+          errorCode: -1,
+          errorMessage: unknownErrorMessage,
         );
       }
     }
@@ -161,17 +171,22 @@ class TicketServices{
           errorMessage: response.statusMessage,
         );
       }
-    } on DioError catch (e) {
+    }  on DioError catch (e) {
       if (e.isNoConnectionError) {
         /// Throws exception caused by internet connection problem
         throw const NoInternetConnectionException(noInternetConnectionMessage);
-      } else if (e.isTimeoutError) {
-        throw const TimeoutException(errorCode: timeOutStatusCode);
-      } else {
-        /// Throws Exception when something went wrong in the call
+      } else if (e.isTimeoutError || e.response!.statusCode! == 408) {
+        throw const TimeoutException(errorCode: timeOutStatusCode,errorMessage: messageTimeOut);
+      } else if (e.response!.statusCode! >= 500) {
         throw RestApiException(
           errorCode: e.response?.statusCode,
-          errorMessage: e.response?.statusMessage,
+          errorMessage: e.response?.data,
+        );
+      }else {
+        /// Throws Exception when something went wrong in the call
+        throw UnknowError(
+          errorCode: -1,
+          errorMessage: unknownErrorMessage,
         );
       }
     }
@@ -208,17 +223,22 @@ class TicketServices{
           errorMessage: response.statusMessage,
         );
       }
-    } on DioError catch (e) {
+    }  on DioError catch (e) {
       if (e.isNoConnectionError) {
         /// Throws exception caused by internet connection problem
         throw const NoInternetConnectionException(noInternetConnectionMessage);
-      } else if (e.isTimeoutError) {
-        throw const TimeoutException(errorCode: timeOutStatusCode);
-      } else {
-        /// Throws Exception when something went wrong in the call
+      } else if (e.isTimeoutError || e.response!.statusCode! == 408) {
+        throw const TimeoutException(errorCode: timeOutStatusCode,errorMessage: messageTimeOut);
+      } else if (e.response!.statusCode! >= 500) {
         throw RestApiException(
           errorCode: e.response?.statusCode,
-          errorMessage: e.response?.statusMessage,
+          errorMessage: e.response?.data,
+        );
+      }else {
+        /// Throws Exception when something went wrong in the call
+        throw UnknowError(
+          errorCode: -1,
+          errorMessage: unknownErrorMessage,
         );
       }
     }
